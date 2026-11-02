@@ -1,8 +1,8 @@
-# Mather — A Caverna do Ciclo
+# A Caverna do Ciclo
 
-Jogo de navegador para praticar o **ciclo trigonométrico**: o aluno responde `cos θ` ou `sen θ` e o Mather anda esse valor pela caverna. Cos anda na horizontal, sen na vertical e 0 deixa o Mather parado.
+Jogo de navegador para praticar o **ciclo trigonométrico**, estrelado pelo **Mather**. O aluno responde `cos θ` ou `sen θ` e o Mather anda esse valor pela caverna. Cos anda na horizontal, sen na vertical e 0 deixa o Mather parado.
 
-**Jogar:** https://divonei.com/mather/
+**Jogar:** https://divonei.com/caverna-do-ciclo/
 
 ## Conteúdo
 
@@ -24,4 +24,4 @@ O jogo coleta só o primeiro nome e a turma.
 
 ## Licença
 
-Livre para uso em sala de aula.
+[CC BY-NC 4.0](LICENSE): livre para usar e adaptar em sala de aula, com crédito a Divonei · divonei.com e sem fins comerciais.

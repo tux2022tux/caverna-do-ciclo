@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Mather — A Caverna do Ciclo</title>
+<title>A Caverna do Ciclo · com o Mather</title>
 <meta name="description" content="Jogo do ciclo trigonométrico: responda cos e sen para guiar o Mather pela caverna. Cos anda na horizontal, sen na vertical.">
-<meta property="og:title" content="Mather — A Caverna do Ciclo">
+<meta property="og:title" content="A Caverna do Ciclo · com o Mather">
 <meta property="og:description" content="Cos anda na horizontal, sen na vertical. Pegue a chave e escape da caverna.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='34' r='26' fill='%237c5cff'/%3E%3Ctext x='32' y='45' font-size='30' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'%3E%CF%80%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -107,7 +107,7 @@ kbd{font-family:var(--mono);font-size:11px;font-weight:500;background:rgba(255,2
 </head>
 <body>
 <header>
-  <div class="brand"><a href="https://divonei.com">divonei.com</a><b><span>Mather</span><i class="sub"> · a caverna do ciclo</i></b></div>
+  <div class="brand"><a href="https://divonei.com">divonei.com</a><b><span>A Caverna do Ciclo</span><i class="sub"> · com o Mather</i></b></div>
   <div class="hud">
     <span id="who"></span>
     <span id="cave">Caverna 1/5</span>
@@ -457,7 +457,7 @@ function reportBlock(){
 }
 const errTxt=e=>`${e.q}: ${e.given==='tempo'?'tempo esgotado':'respondeu '+e.given} (correto: ${e.correct})`;
 function report(){
-  let t=`Mather — A Caverna do Ciclo\nAluno(a): ${PLAYER.nome} · Turma ${PLAYER.turma}\n${new Date().toLocaleString('pt-BR')}\n`;
+  let t=`A Caverna do Ciclo\nAluno(a): ${PLAYER.nome} · Turma ${PLAYER.turma}\n${new Date().toLocaleString('pt-BR')}\n`;
   t+=`Modo: ${RUN.mode==='timed'?'Desafio':'Calmo'} · começou na caverna ${RUN.start+1} · cavernas concluídas: ${RUN.done}\n`;
   t+=`Pontos: ${RUN.score} · Acertos: ${RUN.hits}/${RUN.total} (${acc()}%) · Maior sequência: ${RUN.bestStreak}\n`;
   t+=RUN.errs.length?'Erros:\n'+RUN.errs.map(e=>'- '+errTxt(e)).join('\n'):'Sem erros.';
