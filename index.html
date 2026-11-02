@@ -10,7 +10,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='34' r='26' fill='%237c5cff'/%3E%3Ctext x='32' y='45' font-size='30' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'%3E%CF%80%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#120d09;--panel:#1c1510;--line:#33281e;--ink:#f7efe4;--muted:#b8a68f;--accent:#ffb347;--btn:#3a2c20;--btnSh:#21180f;--btnHi:#4a3828;--deep:#0f0b08;--edge:#4a3a2a;--head:#0a0705;--good:#3ddc84;--bad:#ff6b6b;--cos:#4fa3ff;--sen:#ff9f43;
   --sans:'Atkinson Hyperlegible',system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--mono:'JetBrains Mono',ui-monospace,Consolas,monospace}
@@ -26,7 +26,7 @@ header{display:flex;align-items:center;gap:12px;padding:8px 14px;background:var(
 #score{color:var(--accent);font-weight:700;font-size:16px}
 #combo{color:#c9a6ff;font-weight:700}
 #lives{color:var(--bad);font-size:17px;letter-spacing:1px;font-family:var(--sans)}
-.iconbtn{background:none;border:1px solid var(--edge);color:var(--ink);border-radius:8px;padding:4px 10px;font-size:16px;cursor:pointer;min-height:34px;touch-action:manipulation}
+.iconbtn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;background:none;border:1px solid var(--edge);color:var(--ink);border-radius:8px;padding:4px 10px;font-size:16px;cursor:pointer;min-height:34px;touch-action:manipulation}
 main{flex:1;display:flex;min-height:0}
 #stage{flex:1;position:relative;min-width:0;min-height:0}
 #game{position:absolute;inset:0;width:100%;height:100%;display:block}
@@ -83,9 +83,57 @@ kbd{font-family:var(--mono);font-size:11px;font-weight:500;background:rgba(255,2
 .two .lbl{margin-top:10px}
 #need{color:var(--bad)!important}
 .rank{margin-top:14px}
-.rank ol{margin:6px 0 0;padding-left:26px;font-size:15px}
-.rank li{padding:3px 0;font-family:var(--mono)}
-.rank li.me{color:var(--accent);font-weight:700}
+/* telas no estilo da home divonei.com (Gaudí: papel, vidro e luz de vitral) */
+:root{--g-bg:#f2ece1;--g-ink:#2b241c;--g-soft:#5c5245;--g-mute:#8b806f;--g-gold:#a86f1c;--g-line:rgba(43,36,28,.14);
+  --serif:"Fraunces",Georgia,serif;--gsans:"Instrument Sans",system-ui,sans-serif}
+#overlay{background:rgba(18,12,6,.72);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+.card{position:relative;isolation:isolate;overflow:hidden auto;font-family:var(--gsans);color:var(--g-ink);
+  background:linear-gradient(135deg,rgba(255,255,255,.6),transparent 45%),rgba(246,240,229,.94);
+  border:1px solid rgba(255,255,255,.75);border-radius:24px;box-shadow:0 30px 70px -20px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.6);padding:30px 30px 22px}
+.card::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;filter:blur(40px);opacity:.9;
+  background:radial-gradient(40% 50% at 0% 10%,rgba(70,130,210,.28),transparent 70%),radial-gradient(40% 45% at 100% 30%,rgba(240,150,60,.30),transparent 70%),
+  radial-gradient(35% 40% at 30% 100%,rgba(80,175,140,.22),transparent 70%),radial-gradient(30% 35% at 85% 0%,rgba(215,80,60,.18),transparent 70%)}
+.card .tag{font-family:var(--gsans);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--g-gold);margin:0 0 10px}
+.card .tag.ok{color:#2f7d5b}
+.card h1{font-family:var(--serif);font-weight:300;font-size:clamp(30px,5vw,42px);line-height:1.02;letter-spacing:-.02em;color:var(--g-ink);margin:0 0 12px}
+.card h1 em,.card h1 span{font-style:italic;color:var(--g-gold)}
+.card p,.card li{color:var(--g-soft);opacity:1}
+.card b{color:var(--g-ink)}
+.card a{color:var(--g-gold)}
+.card ul{padding-left:18px}
+.card .lbl{color:var(--g-soft);font-weight:600;font-size:.82rem}
+.card .btn{font-family:var(--gsans);background:var(--g-ink);color:var(--g-bg);border-radius:999px;font-weight:600;font-size:15px;transition:transform .2s,background .2s}
+.card .btn:hover{background:#4a3d2e;transform:translateY(-2px)}
+.card .btn.sec{background:rgba(255,252,246,.55);color:var(--g-ink);box-shadow:inset 0 0 0 1px var(--g-line)}
+.card .btn.sec:hover{background:rgba(255,255,255,.85)}
+.card .btn:disabled{opacity:.55;cursor:default;transform:none}
+.card .btn kbd{background:rgba(255,255,255,.18);color:inherit}
+.card .opt{font-family:var(--gsans);background:rgba(255,252,246,.55);border:1px solid var(--g-line);color:var(--g-ink);border-radius:16px;padding:12px 14px}
+.card .opt small{color:var(--g-mute)}
+.card .opt.on{border-color:var(--g-gold);background:rgba(255,248,230,.95);box-shadow:inset 0 0 0 1px var(--g-gold)}
+.card .stats div{background:rgba(255,252,246,.6);border:1px solid rgba(255,255,255,.8);border-radius:16px;box-shadow:0 10px 24px -18px rgba(80,55,20,.5)}
+.card .stats b{font-family:var(--serif);font-weight:400;font-size:28px;color:var(--g-ink)}
+.card .stats span{color:var(--g-mute)}
+.card .errs{background:rgba(255,252,246,.7);border:1px solid var(--g-line);color:var(--g-ink);border-radius:12px;margin-top:8px}
+.card .inp{font-family:var(--gsans);background:rgba(255,255,255,.8);border:1px solid rgba(43,36,28,.25);color:var(--g-ink);border-radius:12px}
+.card .inp:focus{outline:2px solid var(--g-gold);outline-offset:1px}
+.card .inp.up{text-transform:uppercase;letter-spacing:.14em;font-family:var(--mono)}
+.card .c-cos{color:#2f63b3}.card .c-sen{color:#c2410c}
+.card .small{color:var(--g-mute)!important}
+.card .foot{margin-top:18px;padding-top:12px;border-top:1px solid var(--g-line)}
+.msg{color:#b03a2e!important;font-weight:600;min-height:1.3em;margin:10px 0 0}
+.linkbtn{background:none;border:0;padding:0;color:var(--g-gold);text-decoration:underline;font:inherit;cursor:pointer;letter-spacing:inherit;text-transform:inherit}
+.mono{font-family:var(--mono)}
+.rk{list-style:none;padding:0;margin:6px 0 0;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.8);background:rgba(255,252,246,.6)}
+.rk li{display:grid;grid-template-columns:38px 1fr auto;gap:8px;padding:8px 14px;border-top:1px dashed var(--g-line);font-size:16px;color:var(--g-ink)}
+.rk li:first-child{border-top:0}
+.rk li.me{background:rgba(240,190,90,.28);font-weight:600}
+.rk .pos{font-family:var(--serif);font-style:italic;color:var(--g-gold)}.rk .pt{font-family:var(--mono);font-weight:700}
+.rk2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.det{margin-top:12px}.det summary{cursor:pointer;color:var(--g-gold);font-weight:600}
+#copied{color:#2f7d5b!important;display:inline;margin:0}
+.brand b{font-family:var(--serif);font-weight:400;letter-spacing:-.01em}.brand b span{font-style:italic}
+@media (max-width:520px){.rk2{grid-template-columns:1fr}.two{grid-template-columns:1fr}.card{padding:22px 18px 16px;border-radius:20px}}
 @media (orientation:portrait),(max-width:760px){
   main{flex-direction:column}
   #panel{width:auto;border-left:0;border-top:1px solid var(--line);padding:10px 12px 14px;gap:10px}
@@ -116,6 +164,7 @@ kbd{font-family:var(--mono);font-size:11px;font-weight:500;background:rgba(255,2
     <span id="score" title="Pontos">0</span>
     <span id="combo" title="Combo"></span>
     <span id="lives" aria-label="vidas">♥♥♥</span>
+    <a class="iconbtn" id="home" href="https://divonei.com" title="Voltar para divonei.com" aria-label="Voltar para divonei.com"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg></a>
     <button class="iconbtn" id="mute" title="Som (M)">🔊</button>
     <button class="iconbtn" id="menu" title="Menu (Esc)">☰</button>
   </div>
@@ -287,7 +336,6 @@ function setBtns(on){document.querySelectorAll('.ans').forEach(b=>b.disabled=!on
 function fb(h){$('#feedback').innerHTML=h}
 function hud(){
   if(!RUN)return;const n=S.qs.length;
-  $('#who').textContent=`${PLAYER.nome} · ${PLAYER.turma}`;
   $('#cave').textContent=`Caverna ${S.ci+1}/${CAVES.length}`;
   $('#step').textContent=Math.min(S.i+1,n)+'/'+n;
   $('#goal').textContent=S.hasKey?'🚪':'🗝️';$('#goal').title=S.hasKey?'Objetivo: chegar à porta':'Objetivo: pegar a chave';
@@ -380,14 +428,79 @@ function finishCave(){
   setTimeout(()=>S.ci+1>=CAVES.length?victory():caveDone(bonus),1400);
 }
 
-/* ---------- telas ---------- */
-function showOverlay(h){$('#card').innerHTML=h;$('#overlay').classList.remove('hidden')}
+/* ---------- rede (planilha Google) ---------- */
+let SESSION=null,CONFIG={treinoLivre:true},TREINO=false;
+const MOTIVO={codigo:'Código não encontrado. Confira com o professor.',bloqueada:'Esta turma está bloqueada pelo professor no momento.',
+  nome:'Digite seu primeiro nome.',limite:'Limite de partidas desta sessão atingido. Entre de novo.',sessao:'Sua sessão expirou. Entre de novo com o código.'};
+function loadSession(){const s=store.get().sess;if(s&&s.token&&s.codigo&&s.nome)SESSION=s}
+function saveSession(s){SESSION=s;store.set({sess:s})}
+function clearSession(){SESSION=null;store.set({sess:null})}
+async function api(acao,data={},tries=2){
+  if(!ENDPOINT)throw new Error('offline');
+  for(let i=0;i<tries;i++){
+    const ctl=new AbortController(),tm=setTimeout(()=>ctl.abort(),15000);
+    try{
+      const r=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(Object.assign({acao},data)),signal:ctl.signal});
+      clearTimeout(tm);return await r.json();
+    }catch(e){clearTimeout(tm);if(i===tries-1)throw e;await new Promise(r=>setTimeout(r,1500))}
+  }
+}
+async function entrar(codigo,nome){
+  const j=await api('entrar',{codigo,nome});
+  if(j.ok)saveSession({token:j.token,turma:j.turma,nome:j.nome,codigo:String(codigo).toUpperCase().replace(/[^A-Z0-9]/g,''),exp:Date.now()+5.5*3600e3});
+  return j;
+}
+async function withSession(acao,data={}){
+  if(!SESSION)return{ok:false,motivo:'sessao'};
+  if(Date.now()>SESSION.exp){const r=await entrar(SESSION.codigo,SESSION.nome);if(!r.ok)return r}
+  let j=await api(acao,Object.assign({token:SESSION.token},data));
+  if(!j.ok&&j.motivo==='sessao'){const r=await entrar(SESSION.codigo,SESSION.nome);if(!r.ok)return r;j=await api(acao,Object.assign({token:SESSION.token},data))}
+  return j;
+}
+function setPlayer(){
+  PLAYER=(!TREINO&&SESSION)?{nome:SESSION.nome,turma:SESSION.turma}:{nome:store.get().name||'Treino',turma:''};
+  $('#who').textContent=PLAYER.turma?`${PLAYER.nome} · ${PLAYER.turma}`:'Treino';
+}
+
+/* ---------- telas (estilo do site) ---------- */
+function showOverlay(h){$('#card').innerHTML=h;$('#overlay').classList.remove('hidden');$('#card').scrollTop=0}
 function hideOverlay(){$('#overlay').classList.add('hidden')}
-function menu(){
-  const st=store.get(),u=st.unlocked||0,b=st.best||{},playing=RUN&&['q','anim','wait'].includes(S.phase);
+const homeLink=()=>`<p class="small foot"><a href="https://divonei.com">← Voltar para divonei.com</a></p>`;
+function entrada(msg){
+  const st=store.get(),livre=CONFIG.treinoLivre||!ENDPOINT;
   showOverlay(`<p class="tag">divonei.com · jogo de trigonometria</p>
-  <h1><span>Mather</span> e a Caverna do Ciclo</h1>
-  <p>O Mather caiu numa caverna escura. Pegue a 🗝️ <b>chave</b> e chegue à 🚪 <b>porta</b>. Cada resposta é um passo.</p>
+  <h1>A Caverna <em>do Ciclo</em></h1>
+  <p>Ajude o <b>Mather</b> a escapar da caverna usando o ciclo trigonométrico.</p>
+  <form id="fe" novalidate>
+   <div class="two">
+    <div><label class="lbl" for="cd">Código da turma</label><input id="cd" class="inp mono up" maxlength="8" placeholder="ex.: K7P2QX" autocomplete="off" autocapitalize="characters" spellcheck="false" value="${esc(st.lastCode||'')}"></div>
+    <div><label class="lbl" for="nm">Seu primeiro nome</label><input id="nm" class="inp" maxlength="40" autocomplete="given-name" value="${esc(st.name||'')}"></div>
+   </div>
+   <p class="msg" id="msg" role="alert">${msg?esc(msg):''}</p>
+   <div class="row"><button class="btn" id="ent" type="submit">Entrar</button>${livre?'<button class="btn sec" id="tre" type="button">Treinar sem turma</button>':''}</div>
+  </form>
+  <p class="small">O código é passado pelo professor. ${livre?'No treino, o resultado não é enviado.':''}</p>
+  ${homeLink()}`);
+  $('#fe').onsubmit=async e=>{
+    e.preventDefault();const c=$('#cd').value.trim(),n=$('#nm').value.trim(),m=$('#msg'),b=$('#ent');
+    if(!c||!n){m.textContent='Preencha o código da turma e o seu nome.';(c?$('#nm'):$('#cd')).focus();return}
+    if(!ENDPOINT){m.textContent='Envio não configurado. Use o treino.';return}
+    b.disabled=true;b.textContent='Conferindo…';m.textContent='';
+    try{
+      const j=await entrar(c,n);store.set({lastCode:c.toUpperCase(),name:n});
+      if(j.ok){TREINO=false;setPlayer();menu()}
+      else{m.textContent=MOTIVO[j.motivo]||'Não foi possível entrar.';b.disabled=false;b.textContent='Entrar'}
+    }catch(err){m.textContent='Sem conexão com o servidor. Tente de novo'+(livre?' ou use o treino.':'.');b.disabled=false;b.textContent='Entrar'}
+  };
+  if($('#tre'))$('#tre').onclick=()=>{const n=$('#nm').value.trim();if(n)store.set({name:n});TREINO=true;setPlayer();menu()};
+  if(!st.lastCode)$('#cd').focus();
+}
+function menu(){
+  if(!TREINO&&!SESSION)return entrada();
+  const st=store.get(),u=st.unlocked||0,b=st.best||{},playing=RUN&&['q','anim','wait'].includes(S.phase);
+  showOverlay(`<p class="tag">${PLAYER.turma?`Turma ${esc(PLAYER.turma)} · ${esc(PLAYER.nome)}`:'Modo treino · nada é enviado'} · <button class="linkbtn" id="out">${PLAYER.turma?'sair':'entrar com código'}</button></p>
+  <h1>A Caverna <em>do Ciclo</em></h1>
+  <p>O <b>Mather</b> caiu numa caverna escura. Pegue a 🗝️ <b>chave</b> e chegue à 🚪 <b>porta</b>. Cada resposta é um passo.</p>
   <ul>
    <li><span class="c-cos">cos</span> é o <b>x</b>: anda na horizontal (−1 volta, 1 avança).</li>
    <li><span class="c-sen">sen</span> é o <b>y</b>: anda na vertical (−1 desce, 1 sobe).</li>
@@ -399,24 +512,40 @@ function menu(){
    <button class="opt ${selMode==='calm'?'on':''}" data-m="calm">Calmo<small>sem tempo, para aprender</small></button>
    <button class="opt ${selMode==='timed'?'on':''}" data-m="timed">Desafio 🦇<small>o morcego vem chegando</small></button>
   </div>
-  <div class="two">
-   <div><label class="lbl" for="nm">Seu primeiro nome</label><input id="nm" class="inp" maxlength="40" autocomplete="given-name" value="${esc(st.name||'')}"></div>
-   <div><label class="lbl" for="tm">Turma</label><input id="tm" class="inp" maxlength="10" placeholder="ex.: 2B" value="${esc(st.turma||'')}"></div>
-  </div>
-  <p class="small" id="need"></p>
-  <div class="row" style="margin-top:6px">
+  <div class="row" style="margin-top:14px">
    <button class="btn" id="go0">Começar · Caverna 1</button>
    ${u>0?`<button class="btn sec" id="goU">Continuar · Caverna ${u+1}</button>`:''}
   </div>
-  ${playing?'<div class="row"><button class="btn sec" id="res">Voltar ao jogo</button></div>':''}
-  <p class="small">Recorde neste aparelho: Calmo ${b.calm||0} · Desafio ${b.timed||0}</p>`);
+  <div class="row">
+   ${playing?'<button class="btn sec" id="res">Voltar ao jogo</button>':''}
+   ${PLAYER.turma?'<button class="btn sec" id="rk">🏆 Ranking da turma</button>':''}
+  </div>
+  <p class="small">Recorde neste aparelho: Calmo ${b.calm||0} · Desafio ${b.timed||0}</p>
+  ${homeLink()}`);
   document.querySelectorAll('.opt[data-m]').forEach(o=>o.onclick=()=>{selMode=o.dataset.m;document.querySelectorAll('.opt[data-m]').forEach(x=>x.classList.toggle('on',x===o))});
-  const go=c=>{const n=$('#nm').value.trim(),t=normTurma($('#tm').value);
-    if(!n||!t){$('#need').textContent='Preencha seu nome e sua turma para começar.';(n?$('#tm'):$('#nm')).focus();return}
-    PLAYER={nome:n,turma:t};store.set({name:n,turma:t});newRun(selMode,c)};
-  $('#go0').onclick=()=>go(0);
-  if($('#goU'))$('#goU').onclick=()=>go(u);
+  $('#go0').onclick=()=>newRun(selMode,0);
+  if($('#goU'))$('#goU').onclick=()=>newRun(selMode,u);
   if($('#res'))$('#res').onclick=hideOverlay;
+  if($('#rk'))$('#rk').onclick=rankingScreen;
+  $('#out').onclick=()=>{if(PLAYER.turma)clearSession();TREINO=false;setPlayer();entrada()};
+}
+function rankHTML(r){
+  if(!r||!r.top||!r.top.length)return '<p class="small">Ninguém no ranking ainda. Seja o primeiro!</p>';
+  const me=PLAYER.nome.toLowerCase();
+  let h='<ol class="rk">'+r.top.map((x,i)=>`<li class="${x.nome.toLowerCase()===me?'me':''}"><span class="pos">${i+1}º</span><span class="nm">${esc(x.nome)}</span><span class="pt">${x.pontos}</span></li>`).join('')+'</ol>';
+  if(r.pos&&r.pos>r.top.length)h+=`<p class="small">Você está em <b>${r.pos}º</b> de ${r.n}.</p>`;
+  return h;
+}
+async function rankingScreen(){
+  showOverlay(`<p class="tag">Turma ${esc(PLAYER.turma)} · melhor pontuação de cada aluno</p><h1>🏆 Ranking</h1>
+   <div id="rkbox"><p class="small">Carregando…</p></div>
+   <div class="row"><button class="btn sec" id="bk">Voltar</button></div>`);
+  $('#bk').onclick=menu;
+  try{
+    const j=await withSession('ranking');if(!j.ok)throw new Error(j.motivo);
+    if(!$('#rkbox'))return;
+    $('#rkbox').innerHTML=`<div class="rk2"><div><p class="tag">Calmo</p>${rankHTML(j.calmo)}</div><div><p class="tag">Desafio 🦇</p>${rankHTML(j.desafio)}</div></div>`;
+  }catch(e){if($('#rkbox'))$('#rkbox').innerHTML=`<p class="msg">${MOTIVO[e.message]||'Não foi possível carregar o ranking agora.'}</p>`}
 }
 function statsHTML(){
   return `<div class="stats"><div><b>${RUN.score}</b><span>pontos</span></div><div><b>${acc()}%</b><span>acertos</span></div><div><b>${RUN.bestStreak}</b><span>maior sequência</span></div></div>`;
@@ -430,57 +559,53 @@ function caveDone(bonus){
 }
 function saveBest(){const st=store.get(),b=st.best||{};if(RUN.score>(b[RUN.mode]||0)){b[RUN.mode]=RUN.score;store.set({best:b});return true}return false}
 function errList(){return RUN.errs.length?`<div class="errs">${RUN.errs.map(e=>`${esc(e.q)}: ${e.given==='tempo'?'tempo esgotado':'você disse '+e.given}, era <b>${e.correct}</b>`).join('<br>')}</div>`:'<p>Nenhum erro. 🎯</p>'}
+function endBlocks(){
+  const rank=(TREINO||!ENDPOINT||!SESSION)?'<p class="small">Modo treino: o resultado não foi enviado.</p>':'<p class="small">Enviando resultado…</p>';
+  return `<div class="rank" id="rank">${rank}</div>
+   <details class="det"><summary>Ver erros desta partida (${RUN.errs.length})</summary>${errList()}</details>`;
+}
+const footBlock=()=>`<p class="small mono">Código: ${code()} · <button class="linkbtn" id="copy">copiar relatório</button> <span id="copied"></span></p>`;
 function gameOver(){
   S.phase='over';const rec=saveBest();
   showOverlay(`<p class="tag">Caverna ${S.ci+1} · ${CAVES[S.ci].name}</p><h1>🕷️ As aranhas venceram desta vez</h1>
-   ${statsHTML()}${rec?'<p>🏆 Novo recorde neste aparelho!</p>':''}${errList()}
+   ${statsHTML()}${rec?'<p>🏆 Novo recorde neste aparelho!</p>':''}${endBlocks()}
    <div class="row"><button class="btn" id="rt">Tentar esta caverna de novo</button><button class="btn sec" id="mn">Menu</button></div>
-   ${reportBlock()}`);
+   ${footBlock()}`);
   $('#rt').onclick=()=>{RUN.score=S.score0;RUN.lives=3;RUN.shield=false;RUN.streak=0;startCave(S.ci)};
   $('#mn').onclick=menu;wireReport('derrota');
 }
 function victory(){
   S.phase='over';const rec=saveBest();
   showOverlay(`<p class="tag">${RUN.mode==='timed'?'Modo Desafio':'Modo Calmo'}</p><h1>🏁 O Mather escapou da caverna!</h1>
-   ${statsHTML()}${rec?'<p>🏆 Novo recorde neste aparelho!</p>':''}${errList()}
-   <div class="row"><button class="btn sec" id="ag">Jogar de novo</button><button class="btn sec" id="mn">Menu</button></div>
-   ${reportBlock()}`);
+   ${statsHTML()}${rec?'<p>🏆 Novo recorde neste aparelho!</p>':''}${endBlocks()}
+   <div class="row"><button class="btn" id="ag">Jogar de novo</button><button class="btn sec" id="mn">Menu</button></div>
+   ${footBlock()}`);
   $('#ag').onclick=()=>newRun(RUN.mode,0);$('#mn').onclick=menu;wireReport('vitoria');
 }
 const acc=()=>RUN.total?Math.round(100*RUN.hits/RUN.total):0;
 function hash(s){let h=7;for(const ch of s)h=(h*31+ch.charCodeAt(0))%46656;return h.toString(36).toUpperCase().padStart(3,'0')}
 function code(){const b=`${RUN.mode==='timed'?'D':'C'}${RUN.start+1}${RUN.done}-${RUN.score}-${acc()}`;return `M-${b}-${hash(PLAYER.nome.toLowerCase()+'|'+b)}`}
-function reportBlock(){
-  return `<div class="code">${esc(PLAYER.nome)} · ${esc(PLAYER.turma)} · Código: ${code()}</div>
-   <div class="rank" id="rank"><p class="small">Enviando resultado…</p></div>
-   <div class="row"><button class="btn sec" id="copy">Copiar relatório (plano B)</button></div><span id="copied"></span>`;
-}
 const errTxt=e=>`${e.q}: ${e.given==='tempo'?'tempo esgotado':'respondeu '+e.given} (correto: ${e.correct})`;
 function report(){
-  let t=`A Caverna do Ciclo\nAluno(a): ${PLAYER.nome} · Turma ${PLAYER.turma}\n${new Date().toLocaleString('pt-BR')}\n`;
+  let t=`A Caverna do Ciclo\nAluno(a): ${PLAYER.nome}${PLAYER.turma?' · Turma '+PLAYER.turma:' · treino'}\n${new Date().toLocaleString('pt-BR')}\n`;
   t+=`Modo: ${RUN.mode==='timed'?'Desafio':'Calmo'} · começou na caverna ${RUN.start+1} · cavernas concluídas: ${RUN.done}\n`;
   t+=`Pontos: ${RUN.score} · Acertos: ${RUN.hits}/${RUN.total} (${acc()}%) · Maior sequência: ${RUN.bestStreak}\n`;
   t+=RUN.errs.length?'Erros:\n'+RUN.errs.map(e=>'- '+errTxt(e)).join('\n'):'Sem erros.';
   return t+`\nCódigo: ${code()}`;
 }
-function rankHTML(list){
-  if(!list||!list.length)return '<p class="small">Você é o primeiro da turma no ranking!</p>';
-  return '<ol>'+list.map(r=>`<li class="${r.nome.toLowerCase()===PLAYER.nome.toLowerCase()?'me':''}">${esc(r.nome)} — ${r.pontos}</li>`).join('')+'</ol>';
-}
 async function send(result){
+  if(TREINO||!ENDPOINT||!SESSION)return;
   const box=$('#rank'),modo=RUN.mode==='timed'?'D':'C';
-  if(!ENDPOINT){box.innerHTML='<p class="small">Envio automático ainda não configurado. Use “Copiar relatório”.</p>';return}
-  const d={nome:PLAYER.nome,turma:PLAYER.turma,modo,inicio:RUN.start+1,cavernas:RUN.done,pontos:RUN.score,acertos:RUN.hits,total:RUN.total,
+  const d={modo,inicio:RUN.start+1,cavernas:RUN.done,pontos:RUN.score,acertos:RUN.hits,total:RUN.total,
     pct:acc(),seq:RUN.bestStreak,resultado:result,erros:RUN.errs.map(errTxt).join('; '),codigo:code()};
   try{
-    const r=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(d)});
-    const j=await r.json();if(!j.ok)throw new Error(j.erro);
-    box.innerHTML=`<p class="tag">✔ Resultado enviado ao professor · Ranking ${esc(PLAYER.turma)} · ${modo==='D'?'Desafio':'Calmo'}</p>`+rankHTML(j.ranking);
-  }catch(e){box.innerHTML='<p class="small">Não consegui enviar (sem internet?). Use “Copiar relatório” e mande para o professor.</p>'}
+    const j=await withSession('resultado',d);if(!j.ok)throw new Error(j.motivo);
+    box.innerHTML=`<p class="tag ok">✔ Resultado enviado · Ranking ${esc(PLAYER.turma)} · ${modo==='D'?'Desafio':'Calmo'}</p>`+rankHTML(j.ranking);
+  }catch(e){box.innerHTML=`<p class="msg">${MOTIVO[e.message]||'Não consegui enviar (sem internet?).'} Use “copiar relatório” e mande ao professor.</p>`}
 }
 function wireReport(result){
   send(result);
-  $('#copy').onclick=async()=>{try{await navigator.clipboard.writeText(report());$('#copied').textContent='Copiado! Cole e envie para o professor.'}catch(e){$('#copied').textContent='Não deu para copiar aqui. Anote o código acima.'}};
+  $('#copy').onclick=async()=>{try{await navigator.clipboard.writeText(report());$('#copied').textContent='copiado!'}catch(e){$('#copied').textContent='não deu para copiar; anote o código.'}};
 }
 
 /* ---------- som ---------- */
@@ -732,7 +857,9 @@ $('#mute').onclick=toggleMute;
 $('#menu').onclick=menu;
 
 applyTheme('ambar');
+loadSession();setPlayer();
 fit();menu();requestAnimationFrame(loop);
+if(ENDPOINT)api('config',{},1).then(j=>{if(j&&j.ok){CONFIG.treinoLivre=!!j.treinoLivre;if(!CONFIG.treinoLivre&&$('#tre')){$('#tre').remove()}if(!CONFIG.treinoLivre&&TREINO){TREINO=false;setPlayer();if(!RUN)entrada()}}}).catch(()=>{});
 </script>
 </body>
 </html>
